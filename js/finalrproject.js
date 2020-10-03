@@ -19,6 +19,7 @@ var eduPromise = d3.csv("../education.csv");
 			 {
 			return graph.height -  yScale(stratio.stRatio)
 		})
+		.attr("fill","blue")
 		}
 	
 	
