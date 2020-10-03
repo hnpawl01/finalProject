@@ -1,10 +1,11 @@
 var eduPromise = d3.csv("../education.csv");
 
 //----------drawbar-------------
-	var drawBar = function (education,screen,xScale,yScale,graph,target)
+	var drawBar = function (education,xScale,yScale,target,graph)
 	{
+		console.log("inside drawBar")
 		target.selectAll("rect")
-		.data(education.stRate)
+		.data(education)
 		.enter()
 		.append("rect")
 		.attr("x",function(stratio)
@@ -14,14 +15,14 @@ var eduPromise = d3.csv("../education.csv");
 		.attr("y", function(stratio){
 			 return yScale(stratio.stRate)})
 		.attr("width", xScale.bandwidth)
-		.attr("height", function(stratio)
+		.attr("length", function(stratio)
 			 {
-			return graph.height -  yScale
+			return graph.height -  yScale(stratio.stRatio)
 		})
 		}
 	
 	
-/*//--------buttons----------
+//--------buttons----------
 		var stuvsr = function (education,screen,xScale,yScale)
 		{
 			d3.select("#banner")
@@ -67,7 +68,7 @@ var eduPromise = d3.csv("../education.csv");
 				
 			})
 		}
-		*/
+		
 //----------the graph extras-----------
 	var drawLegend = function()
 	{
@@ -83,9 +84,9 @@ var eduPromise = d3.csv("../education.csv");
 	}
 	
 //---------scale---------
-var initgraph = function (education,screen,xScale,yScale,graph,target)
+var initgraph = function (education)
 {
-	console.log(education)
+	console.log("inside init",education)
 	var screen = {width:500, height:500}
 	var margins = {left:20, right:20, top:20, bottom:20}
 	
@@ -95,9 +96,12 @@ var initgraph = function (education,screen,xScale,yScale,graph,target)
 			height: screen.height - margins.top - margins.bottom
 		}
 	var xScale = d3.scaleBand()
-	.paddingInner(.3)
-	.domain([0,21])
+	.domain(["Japan","United Kingdom", "South Korea", "Singapore", "Russian Fedration",
+			 "Finland", "Canada", "Netherlands", "Ireland", "Israel", "China", 
+			 "New Zealand", "Norway", "Belgium", "Germany", "Denmark", "Estonia", 
+			 "United States", "France", "Portugal"])
 	.range([0, graph.width])
+	.paddingInner(.3)
 	var yScale = d3.scaleBand()
 	.domain([600,0])
 	.range([graph.height,0])
@@ -113,7 +117,7 @@ var initgraph = function (education,screen,xScale,yScale,graph,target)
 	
 	
 	drawAxes(graph,margins,xScale,yScale)
-	drawBar(education,screen,xScale,yScale,graph,target)
+	drawBar(education,xScale,yScale,target,graph)
 	drawLabels(graph,margins)
 	drawLegend(graph,margins)
 	
@@ -128,7 +132,7 @@ var initgraph = function (education,screen,xScale,yScale,graph,target)
 var successFcn = function(education)
 {
 	console.log("education",education)
-	initgraph(education,screen,xScale,yScale,graph,target)
+	initgraph(education)
 	
 }
 var failureFcn = function(error)
