@@ -15,13 +15,32 @@ var eduPromise = d3.csv("../education.csv");
 		.attr("y", function(stratio){
 			 return yScale(stratio.stRate)})
 		.attr("width", xScale.bandwidth)
-		.attr("length", function(stratio)
+		.attr("height", function(stratio)
 			 {
 			return graph.height -  yScale(stratio.stRatio)
 		})
 		.attr("fill","blue")
 		}
+//------------drawtable------------
+var drawTable = function()
+{
+	var rows = d3.select("govstable tbody")
+	.selectAll("tr")
+	.data(education)
+	.enter()
+	.append("tr")
 	
+	rows.append("td")
+	.text(function(education)
+	{
+		return education.ranking 
+	})
+	rows.append("td")
+	.text(function(education)
+		 {
+		return education.typeGov
+	})
+}
 	
 //--------buttons----------
 		var stuvsr = function (education,screen,xScale,yScale)
@@ -58,7 +77,7 @@ var eduPromise = d3.csv("../education.csv");
 				
 			})
 		}	
-		var govtable = function (education,screen,xScale,yScale)
+		var govtablebt = function (education,screen,xScale,yScale)
 		{
 			d3.select("#banner4")
 			.on("click", function()
@@ -114,7 +133,7 @@ var initgraph = function (education)
 	var target = d3.select("svg")
 	.append("g")
 	.attr("id", "#graph")
-	.attr("transform", "translate(" + margins.left + ", " + margins.top+")")
+	.attr("transform", "translate(" + margins.left + ", " + margins.top + ")")
 	
 	
 	drawAxes(graph,margins,xScale,yScale)
@@ -125,7 +144,7 @@ var initgraph = function (education)
 	stuvsr(educaiton,screen,xScale,yScale)
 	perpvsr(education,screen,xScale,yScale)	
 	mathvsr(education,screen,xScale,yScale)
-	
+	govtablebt(education,screen,xScale,yScale)
 		
 }
 
