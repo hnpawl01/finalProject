@@ -1,26 +1,24 @@
 var eduPromises = d3.csv("../education.csv");
 
 //----------drawingFinalvsHW-------------
-	var drawPlot = function (education,screen,xScale,yScale)
+	var drawPlot = function (education,target,xScale,yScale)
 	{
 		console.log("drawplot" ,education);
-		d3.select("#graph")
-		.selectAll("circle")
+		target.selectAll("circle")
 		.data(education)
 		.enter()
 		.append("circle")
 		.attr("cx", function(makeup)
 			 {
-			console.log("cx",makeup)
-			return makeup.ranking
+			return xScale(makeup.totalcap)
 			})
 		.attr("cy", function(makeup)
 			 {
-			console.log("cy",makeup)
-			return makeup.math
+			return yScale(makeup.math)
 			})
-		.attr("r",2)
-		.on("mouseenter", function(education)
+		.attr("r",2) 
+		
+		.on("mouseover", function(makeup)
 		   {
 			var xPos = d3.event.pageX;
 			var yPos = d3.event.pageY;
@@ -28,24 +26,60 @@ var eduPromises = d3.csv("../education.csv");
 			.classed("hidden",false)
 			.style("top",yPos+"px")
 			.style("left",xPos+"px")
-			
-		})}		
+			d3.select("#scatter")
+			.text(makeup.country)
+			d3.select("#money")
+			.text(makeup.totalcap)
+			d3.select("#mathscores")
+			.text(makeup.math)
+		})}
+var drawAxis = function(graph,margins,xScale,yScale)
+	{
+	var xAxis = d3.axisBottom(xScale)
+ 	d3.select("svg")
+	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +(margins.top + graph.height) + ")")
+	.call(xAxis)
+	
+	var yAxis = d3.axisLeft(yScale);
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," + (margins.top) + ")")
+	.call(yAxis) 
+	}
 	
 //---------scale---------
 var initgraph = function (education)
 {
 	console.log("insideinit",education)
-	var screen = {width:500, height:500}
+	var screen = {width:700, height:500}
+	var margins = {left:30, right:20, top:20, bottom:20}
+	var graph = 
+		{
+			width: screen.width - margins.left - margins.right, 
+			height: screen.height - margins.top - margins.bottom
+		}
+	
+    d3.select("svg")
+	.attr("width",screen.width)
+	.attr("height",screen.height)
+	
+	var target = d3.select("svg")
+	.append("g")
+	.attr("id", "#graph")
+	.attr("transform", "translate(" + margins.left + ", " + margins.top + ")")
+	
 	d3.select("#graph")
 	.attr("width", screen.width)
 	.attr("height", screen.height)
 	var xScale = d3.scaleLinear()
-					.domain([0,20])
-					.range([0,screen.width])
+					.domain([0,14500])
+					.range([0,graph.width])
 	var yScale = d3.scaleLinear()
-					.domain([0,575])
-					.range([screen.height,0])
-	drawPlot(education,screen,xScale,yScale);
+					.domain([0,600])
+					.range([graph.height,0])
+	drawAxis(graph,margins,xScale,yScale)
+	drawPlot(education,target,xScale,yScale);
 		
 }
 

@@ -1,7 +1,7 @@
 var eduPromise = d3.csv("../education.csv");
 
 //----------drawbar-------------
-	var drawBar = function (education,xScale,yScale,target,graph)
+	var drawBar = function (education,xScale,yScale,target,graph,margins)
 	{
 		console.log("inside drawBar", yScale)
 		target.selectAll("rect")
@@ -31,10 +31,13 @@ var eduPromise = d3.csv("../education.csv");
 			.classed("hidden",false)
 			.style("top",yPos+"px")
 			.style("left",xPos+"px")
+			
 			d3.select("#rOne")
 			.text(makeup.country)
+			
 			d3.select("#stRatios")
 			.text(makeup.stRate)
+			
 			d3.select(this)
 			.attr("fill", "yellow")
 	 		
@@ -43,9 +46,11 @@ var eduPromise = d3.csv("../education.csv");
 		{
 			d3.select(this)
 			.attr("fill", "blue")
-		})}
+		})
+	drawLabels(graph,margins)
+	}
 	
-	var drawBar2 = function (education,xScale,yScale2,target2,graph)
+	var drawBar2 = function (education,xScale,yScale2,target2,graph,margins)
 	{
 		console.log("inside drawBar2", target2)
 		target2.selectAll("rect")
@@ -72,14 +77,20 @@ var eduPromise = d3.csv("../education.csv");
 			console.log("rect")
 			var xPos = d3.event.pageX;
 			var yPos = d3.event.pageY;
-			d3.select("#tooltip")
+			d3.select("#tooltip2")
 			.classed("hidden",false)
 			.style("top",yPos+"px")
 			.style("left",xPos+"px")
-			d3.select("#rOne")
+			
+			d3.select("#rTwo")
 			.text(makeup.country)
-			d3.select("#stRatios")
-			.text(makeup.stRate)
+			
+			d3.select("#percerp")
+			.text(makeup.percPerP)
+			
+			d3.select("#gdpper")
+			.text(makeup.gdp)
+			
 			d3.select(this)
 			.attr("fill", "purple")	
 		})
@@ -87,9 +98,11 @@ var eduPromise = d3.csv("../education.csv");
 		{
 			d3.select(this)
 			.attr("fill", "red")
-		})}
+		})
+	drawLabels2(graph,margins)
+	}
 	
-	var drawBar3 = function (education,xScale,yScale3,target3,graph)
+	var drawBar3 = function (education,xScale,yScale3,target3,graph,margins)
 	{
 		console.log("inside drawBar3", target3)
 		target3.selectAll("rect")
@@ -115,14 +128,17 @@ var eduPromise = d3.csv("../education.csv");
 			console.log("rect")
 			var xPos = d3.event.pageX;
 			var yPos = d3.event.pageY;
-			d3.select("#tooltip")
+			d3.select("#tooltip3")
 			.classed("hidden",false)
 			.style("top",yPos+"px")
 			.style("left",xPos+"px")
-			d3.select("#rOne")
+			
+			d3.select("#rThree")
 			.text(makeup.country)
-			d3.select("#stRatios")
-			.text(makeup.stRate)
+			
+			d3.select("#mscore")
+			.text(makeup.math)
+			
 			d3.select(this)
 			.attr("fill", "orange")	
 		})
@@ -130,7 +146,9 @@ var eduPromise = d3.csv("../education.csv");
 		{
 			d3.select(this)
 			.attr("fill", "purple")
-		})}
+		})
+	drawLabels3(graph,margins)
+	}
 //------------drawtable------------
 var drawTable = function(education)
 {
@@ -163,10 +181,6 @@ var drawTable = function(education)
 	
 	
 //----------the graph extras-----------
-	var drawLegend = function(graph,margins)
-	{
-		
-	}
 		
 	//---------axes---------
 	var drawAxes = function(graph,margins,xScale,yScale)
@@ -228,7 +242,81 @@ var drawTable = function(education)
 	//--------labels-------
 	var drawLabels = function(graph,margins)
 	{
-		
+		var labels = d3.select("svg.first")
+        .append("g")
+        .classed("labels",true)
+	   
+	   labels.append("text")
+		.classed("title", true)
+		.text("Student Teacher Ratios vs Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (10))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (graph.height) +(95))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Student Teacher Ratios")
+        .attr("text-anchor","middle")
+		.attr( "transform" , "rotate(90) translate (" +(graph.height/2)  + ",-3)")
+	}
+	var drawLabels2 = function(graph,margins)
+	{
+		var labels = d3.select("svg.second")
+        .append("g")
+        .classed("labels",true)
+	   
+	   labels.append("text")
+		.classed("title", true)
+		.text("Percent of GDP Per Pupil vs Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (10))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (graph.height) +(95))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Percent of GDP Per Pupil")
+        .attr("text-anchor","middle")
+		.attr( "transform" , "rotate(90) translate (" +(graph.height/2)  + ",-3)")
+	}
+	var drawLabels3 = function(graph,margins)
+	{
+		var labels = d3.select("svg.third")
+        .append("g")
+        .classed("labels",true)
+	   
+	   labels.append("text")
+		.classed("title", true)
+		.text("Math Test vs Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (10))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Ranking")
+        .attr("text-anchor","middle")
+		.attr("x", margins.left + graph.width/2)
+		.attr("y", margins.top + (graph.height) +(95))
+	
+	labels.append("text")
+		.classed("label", true)
+		.text("Score")
+        .attr("text-anchor","middle")
+		.attr( "transform" , "rotate(90) translate (" +(graph.height/2)  + ",-3)")
 	}
 	
 //---------makegraphs---------
@@ -245,7 +333,7 @@ var initgraph = function (education)
 		}
 	//-------scales--------
 	var xScale = d3.scaleBand()
-	.domain(["1 Japan","2 United Kingdom", "3 South Korea", "4 Singapore", "5 Russian Fedration",
+	.domain(["1 Japan","2 United Kingdom", "3 South Korea", "4 Singapore", "5 Russian Federation",
 			 "6 Finland", "7 Canada", "8 Netherlands", "9 Ireland", "10 Israel", "11 China", 
 			 "12 New Zealand", "13 Norway", "14 Belgium", "15 Germany", "16 Denmark", "17 Estonia", 
 			 "18 United States", "19 France", "20 Portugal", "21 Average"])
@@ -292,12 +380,12 @@ var initgraph = function (education)
 	
 	//---allgraphscalls---
 	drawAxes(graph,margins,xScale,yScale)
-	drawBar(education,xScale,yScale,target,graph)
-	drawLabels(graph,margins)
+	drawBar(education,xScale,yScale,target,graph,margins)
+	
 	drawAxes2(graph,margins,xScale,yScale2)
-	drawBar2(education,xScale,yScale2,target2,graph)
+	drawBar2(education,xScale,yScale2,target2,graph,margins)
 	drawAxes3(graph,margins,xScale,yScale3)
-	drawBar3(education,xScale,yScale3,target3,graph)
+	drawBar3(education,xScale,yScale3,target3,graph,margins)
 	drawTable(education)
 		
 }
