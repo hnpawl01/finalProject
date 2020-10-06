@@ -8,18 +8,64 @@ var eduPromise = d3.csv("../education.csv");
 		.data(education)
 		.enter()
 		.append("rect")
-		.attr("x",function(stratio)
+		.attr("x",function(makeup)
 		{
-			return xScale(stratio.ranking)
+			
+			return xScale(makeup.country)
 		})
-		.attr("y", function(stratio){
-			 return yScale(stratio.stRate)})
+		.attr("y", function(makeup){
+			console.log(yScale(makeup.stRate))
+			 return yScale(makeup.stRate)})
 		.attr("width", xScale.bandwidth)
-		.attr("height", function(stratio)
+		.attr("height", function(makeup)
 			 {
-			return graph.height -  yScale(stratio.stRatio)
+			return graph.height -  yScale(makeup.stRate)
 		})
 		.attr("fill","blue")
+		}
+	var drawBar2 = function (education,xScale,yScale2,target,graph)
+	{
+		console.log("inside drawBar", target)
+		target.selectAll("rect")
+		.data(education)
+		.enter()
+		.append("rect")
+		.attr("x",function(makeup)
+		{
+			
+			return xScale(makeup.country)
+		})
+		.attr("y", function(makeup){
+			console.log(yScale2(makeup.percPerP))
+			 return yScale2(makeup.percPerP)})
+		.attr("width", xScale.bandwidth)
+		.attr("height", function(makeup)
+			 {
+			return graph.height -  yScale2(makeup.percPerP)
+		})
+		.attr("fill","red")
+		}
+	var drawBar3 = function (education,xScale,yScale3,target,graph)
+	{
+		console.log("inside drawBar", target)
+		target.selectAll("rect")
+		.data(education)
+		.enter()
+		.append("rect")
+		.attr("x",function(makeup)
+		{
+			
+			return xScale(makeup.country)
+		})
+		.attr("y", function(makeup){
+			console.log(yScale3(makeup.math))
+			 return yScale3(makeup.math)})
+		.attr("width", xScale.bandwidth)
+		.attr("height", function(makeup)
+			 {
+			return graph.height -  yScale3(makeup.math)
+		})
+		.attr("fill","purple")
 		}
 //------------drawtable------------
 var drawTable = function()
@@ -43,37 +89,42 @@ var drawTable = function()
 }
 	
 //--------buttons----------
-		var stuvsr = function (education,screen,xScale,yScale)
+		var stuvsr = function (education,xScale,yScale,target,graph)
 		{
 			d3.select("#banner")
 			.on("click", function()
 			   {
 				d3.selectAll("rect")
 				.remove()
-			drawBar(education,screen,xScale,yScale)
+			drawBar(education,xScale,yScale,target,graph)
 			})
 		}
 		
-		var perpvsr = function (education,screen,xScale,yScale)
+		var perpvsr = function (education,xScale,yScale2,target,graph,margins)
 		{
 			d3.select("#banner2")
 			.on("click", function()
 			   {
 				d3.selectAll("rect")
 				.remove()
-			drawBar2(education,screen,xScale,yScale)
+				d3.selectAll("drawAxes")
+				.classed("hidden",true)
+			drawAxes2(graph,margins,xScale,yScale2)
+			drawBar2(education,xScale,yScale2,target,graph)
 				
 			})
 		}
 		
-		var mathvsr = function (education,screen,xScale,yScale)
+		var mathvsr = function (education,xScale,yScale3,target,graph,margins)
 		{
 			d3.select("#banner3")
 			.on("click", function()
 			   {
 				d3.selectAll("rect")
 				.remove()
-			drawBar3(education,screen,xScale,yScale)
+				
+			drawAxes3(graph,margins,xScale,yScale3)
+			drawBar3(education,xScale,yScale3,target,graph)
 				
 			})
 		}	
@@ -84,46 +135,99 @@ var drawTable = function()
 			   {
 				d3.selectAll("rect")
 				.remove()
-			drawBar4(education,screen,xScale,yScale)
+			drawTable(education,screen,xScale,yScale)
 				
 			})
 		}
 		
 //----------the graph extras-----------
-	var drawLegend = function()
+	var drawLegend = function(graph,margins)
 	{
 		
 	}
-	var drawAxes = function()
-	{
 		
+	//---------axes---------
+	var drawAxes = function(graph,margins,xScale,yScale)
+	{
+	var xAxis = d3.axisBottom(xScale); 
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
+	.call(xAxis)
+		
+	var yAxis = d3.axisLeft(yScale);
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.call(yAxis) 
 	}
-	var drawLabels = function()
+	
+	var drawAxes2 = function(graph,margins,xScale,yScale2)
+	{
+	var xAxis = d3.axisBottom(xScale); 
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
+	.call(xAxis)
+		
+	var yAxis = d3.axisLeft(yScale2);
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.call(yAxis) 
+	}
+	
+	var drawAxes3 = function(graph,margins,xScale,yScale3)
+	{
+	var xAxis = d3.axisBottom(xScale); 
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
+	.call(xAxis)
+		
+	var yAxis = d3.axisLeft(yScale3);
+	d3.select("svg")
+ 	.append("g")
+	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.call(yAxis) 
+	}
+	//--------labels-------
+	var drawLabels = function(graph,margins)
 	{
 		
 	}
 	
-//---------scale---------
+//---------makegraph---------
 var initgraph = function (education)
 {
 	console.log("inside init",education)
-	var screen = {width:500, height:500}
-	var margins = {left:20, right:20, top:20, bottom:20}
+	var screen = {width:600, height:300}
+	var margins = {left:40, right:20, top:20, bottom:20}
 	
 	var graph = 
 		{
 			width: screen.width - margins.left - margins.right, 
 			height: screen.height - margins.top - margins.bottom
 		}
+	//-------scales--------
 	var xScale = d3.scaleBand()
-	.domain(["Japan","United Kingdom", "South Korea", "Singapore", "Russian Fedration",
-			 "Finland", "Canada", "Netherlands", "Ireland", "Israel", "China", 
-			 "New Zealand", "Norway", "Belgium", "Germany", "Denmark", "Estonia", 
-			 "United States", "France", "Portugal"])
+	.domain(["1 Japan","2 United Kingdom", "3 South Korea", "4 Singapore", "5 Russian Fedration",
+			 "6 Finland", "7 Canada", "8 Netherlands", "9 Ireland", "10 Israel", "11 China", 
+			 "12 New Zealand", "13 Norway", "14 Belgium", "15 Germany", "16 Denmark", "17 Estonia", 
+			 "18 United States", "19 France", "20 Portugal"])
 	.range([0, graph.width])
 	.paddingInner(.3)
-	var yScale = d3.scaleBand()
-	.domain([600,0])
+	
+	var yScale = d3.scaleLinear()
+	.domain([0,25])
+	.range([graph.height,0])
+	
+	var yScale2 = d3.scaleLinear()
+	.domain([0,50])
+	.range([graph.height,0])
+	
+	var yScale3 = d3.scaleLinear()
+	.domain([0,575])
 	.range([graph.height,0])
 	
 	d3.select("svg")
@@ -135,15 +239,16 @@ var initgraph = function (education)
 	.attr("id", "#graph")
 	.attr("transform", "translate(" + margins.left + ", " + margins.top + ")")
 	
-	
+	//---firstgraphcalls---
 	drawAxes(graph,margins,xScale,yScale)
 	drawBar(education,xScale,yScale,target,graph)
 	drawLabels(graph,margins)
 	drawLegend(graph,margins)
 	
-	stuvsr(educaiton,screen,xScale,yScale)
-	perpvsr(education,screen,xScale,yScale)	
-	mathvsr(education,screen,xScale,yScale)
+	//---buttonscalled---
+	stuvsr(education,xScale,yScale,target,graph)
+	perpvsr(education,xScale,yScale2,target,graph,margins)	
+	mathvsr(education,xScale,yScale3,target,graph,margins)
 	govtablebt(education,screen,xScale,yScale)
 		
 }
