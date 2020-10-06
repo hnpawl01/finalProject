@@ -1,10 +1,4 @@
-.hidden
-{
-
-	display:none;
-}
-
-#tooltip
+#tooltipc
 {
 	position:absolute;
     width:125px;
@@ -14,4 +8,4 @@
     border-radius:10px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     pointer-events:none;
-} 
+}

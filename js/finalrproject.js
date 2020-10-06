@@ -31,9 +31,9 @@ var eduPromise = d3.csv("../education.csv");
 			.classed("hidden",false)
 			.style("top",yPos+"px")
 			.style("left",xPos+"px")
-			d3.select("rOne")
+			d3.select("#rOne")
 			.text(makeup.country)
-			d3.select("stRatios")
+			d3.select("#stRatios")
 			.text(makeup.stRate)
 			d3.select(this)
 			.attr("fill", "yellow")
@@ -65,9 +65,21 @@ var eduPromise = d3.csv("../education.csv");
 			 {
 			return graph.height -  yScale2(makeup.percPerP)
 		})
+		
 		.attr("fill","red")
 		.on("mouseover", function(makeup)
 		{
+			console.log("rect")
+			var xPos = d3.event.pageX;
+			var yPos = d3.event.pageY;
+			d3.select("#tooltip")
+			.classed("hidden",false)
+			.style("top",yPos+"px")
+			.style("left",xPos+"px")
+			d3.select("#rOne")
+			.text(makeup.country)
+			d3.select("#stRatios")
+			.text(makeup.stRate)
 			d3.select(this)
 			.attr("fill", "purple")	
 		})
@@ -100,6 +112,17 @@ var eduPromise = d3.csv("../education.csv");
 		.attr("fill","purple")
 		.on("mouseover", function(makeup)
 		{
+			console.log("rect")
+			var xPos = d3.event.pageX;
+			var yPos = d3.event.pageY;
+			d3.select("#tooltip")
+			.classed("hidden",false)
+			.style("top",yPos+"px")
+			.style("left",xPos+"px")
+			d3.select("#rOne")
+			.text(makeup.country)
+			d3.select("#stRatios")
+			.text(makeup.stRate)
 			d3.select(this)
 			.attr("fill", "orange")	
 		})
@@ -111,18 +134,6 @@ var eduPromise = d3.csv("../education.csv");
 //------------drawtable------------
 var drawTable = function(education)
 {
-	d3.select("svg")
-	.remove()
-	/*
-	d3.select("tr")
-	.attr("class", "heads")
-	d3.select("tr.heads")
-	.append("th")
-	.text("Country With Ranking")
-	d3.select("tr.heads")
-	.append("th")
-	.text("Government of Country")
-	*/
 	d3.select("thead")
 	.append("th")
 	.text("Country With Ranking")
@@ -149,59 +160,8 @@ var drawTable = function(education)
 		return makeup.typeGov
 	})
 }
-/*	
-//--------buttons----------
-		var stuvsr = function (education,xScale,yScale,target,graph)
-		{
-			d3.select("#banner")
-			.on("click", function()
-			   {
-				d3.selectAll("rect")
-				.remove()
-			drawBar(education,xScale,yScale,target,graph)
-			})
-		}
-		
-		var perpvsr = function (education,xScale,yScale2,target,graph,margins)
-		{
-			d3.select("#banner2")
-			.on("click", function()
-			   {
-				d3.selectAll("rect")
-				.remove()
-				d3.selectAll("drawAxes")
-				.classed("hidden",true)
-			drawAxes2(graph,margins,xScale,yScale2)
-			drawBar2(education,xScale,yScale2,target,graph)
-				
-			})
-		}
-		
-		var mathvsr = function (education,xScale,yScale3,target,graph,margins)
-		{
-			d3.select("#banner3")
-			.on("click", function()
-			   {
-				d3.selectAll("rect")
-				.remove()
-				
-			drawAxes3(graph,margins,xScale,yScale3)
-			drawBar3(education,xScale,yScale3,target,graph)
-				
-			})
-		}	
-		var govtablebt = function (education,screen,xScale,yScale)
-		{
-			d3.select("#banner4")
-			.on("click", function()
-			   {
-				d3.selectAll("rect")
-				.remove()
-			drawTable(education)
-				
-			})
-		}
-	*/	
+	
+	
 //----------the graph extras-----------
 	var drawLegend = function(graph,margins)
 	{
@@ -212,57 +172,57 @@ var drawTable = function(education)
 	var drawAxes = function(graph,margins,xScale,yScale)
 	{
 	var xAxis = d3.axisBottom(xScale); 
-	d3.select("svg.first")
+	var turns = d3.select("svg.first")
  	.append("g")
 	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
 	.call(xAxis)
 		
-	d3.select("xAxis")
-		.attr("class","turns")
-	d3.selectAll("text.turns")
-	.attr("text-anchor","middle")
-	.attr("transform","translate(0,30) rotate(90)")
+	turns.selectAll("text")
+	.attr("text-anchor","start")
+	.attr("transform","rotate(90) translate(8,-11)")
 		
 	var yAxis = d3.axisLeft(yScale);
 	d3.select("svg.first")
  	.append("g")
-	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top) + ")")
 	.call(yAxis) 
 	}
 	
 	var drawAxes2 = function(graph,margins,xScale,yScale2)
 	{
 	var xAxis2 = d3.axisBottom(xScale); 
-	d3.select("svg.second")
+	var turns2 = d3.select("svg.second")
  	.append("g")
 	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
 	.call(xAxis2)
-	d3.selectAll("text")
-	.attr("text-anchor","middle")
-	.attr("transform","rotate(90)")
+	
+	turns2.selectAll("text")
+	.attr("text-anchor","start")
+	.attr("transform","rotate(90) translate(8,-11)")
 		
 	var yAxis2 = d3.axisLeft(yScale2);
 	d3.select("svg.second")
  	.append("g")
-	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top) + ")")
 	.call(yAxis2) 
 	}
 	
 	var drawAxes3 = function(graph,margins,xScale,yScale3)
 	{
 	var xAxis3 = d3.axisBottom(xScale); 
-	d3.select("svg.third")
+	var turns3 = d3.select("svg.third")
  	.append("g")
 	.attr("transform", "translate (" + margins.left + "," +( margins.top + graph.height) + ")")
 	.call(xAxis3)
-	d3.selectAll("text")
-	.attr("text-anchor","middle")
-	.attr("transform","rotate(90)")
+	
+	turns3.selectAll("text")
+	.attr("text-anchor","start")
+	.attr("transform","rotate(90) translate(8,-11)")
 		
 	var yAxis3 = d3.axisLeft(yScale3);
 	d3.select("svg.third")
  	.append("g")
-	.attr("transform", "translate (" + margins.left + "," +( margins.bottom/2) + ")")
+	.attr("transform", "translate (" + margins.left + "," +( margins.top) + ")")
 	.call(yAxis3) 
 	}
 	//--------labels-------
@@ -334,19 +294,12 @@ var initgraph = function (education)
 	drawAxes(graph,margins,xScale,yScale)
 	drawBar(education,xScale,yScale,target,graph)
 	drawLabels(graph,margins)
-	drawLegend(graph,margins)
 	drawAxes2(graph,margins,xScale,yScale2)
 	drawBar2(education,xScale,yScale2,target2,graph)
 	drawAxes3(graph,margins,xScale,yScale3)
 	drawBar3(education,xScale,yScale3,target3,graph)
-	//drawTable(education)
-	/*
-	//---buttonscalled---
-	stuvsr(education,xScale,yScale,target,graph)
-	perpvsr(education,xScale,yScale2,target,graph,margins)	
-	mathvsr(education,xScale,yScale3,target,graph,margins)
-	govtablebt(education,screen,xScale,yScale)
-	*/	
+	drawTable(education)
+		
 }
 
 //-------------promise-------------
