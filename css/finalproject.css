@@ -57,3 +57,57 @@ td
 {
 	border: 2px solid black;
 }
+.one
+{
+	background-color: rgb(255, 128, 128);
+	color: 	
+}
+.two 
+{
+	background-color: rgb(255, 166, 77);	
+}
+.three
+{
+	background-color: rgb(255, 255, 153);	
+}
+.four
+{
+	background-color: palegreen;
+}
+.five
+{
+	background-color: skyblue;
+}
+.six
+{
+	background-color: plum;
+}
+.seven
+{
+	background-color: lightslategray;
+	color: whitesmoke;
+}
+.eight
+{
+	background-color: gainsboro;
+}
+.nine
+{
+	background-color: rgb(255, 179, 102);
+
+}
+.ten
+{
+	background-color: lightpink;
+}
+.eleven
+{
+	background-color: rgb(255, 187, 153);
+
+}
+.colorless
+{
+	background-color: white;
+	font-weight: 100;
+	color: black;
+}

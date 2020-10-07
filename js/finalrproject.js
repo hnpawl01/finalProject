@@ -173,19 +173,200 @@ var drawTable = function(education)
 	})
 	
 	rows.append("td")
-	.attr("id",function(makeup){
+	.attr("class",function(makeup){
 		  
-		 if (makeup.typeGov == "parliamentary constitutional monarchy")
+		if (makeup.typeGov == "parliamentary constitutional monarchy")
 		{
-			return "one"
-		}})
+			return "one colorless"
+		}
+		if (makeup.typeGov == "presidential republic")
+		{
+		return "two colorless"
+		}
+		if (makeup.typeGov == "parliamentary republic")
+		{
+		return "three colorless"
+		}
+		if (makeup.typeGov == "semi-presidential federation")
+		{
+		return "four colorless"
+		}
+		if (makeup.typeGov == "federal parliamentary democracy under a constitutional monarchy")
+		{
+		return "five colorless"
+		}
+		if (makeup.typeGov == "parliamentary democracy")
+		{
+		return "six colorless"
+		}
+		if (makeup.typeGov == "communist party-led state")
+		{
+		return "seven colorless"
+		}
+		if (makeup.typeGov == "parliamentary democracy under a constitutional monarchy")
+		{
+		return "eight colorless"
+		}
+		if (makeup.typeGov == "federal parliamentary republic")
+		{
+		return "nine colorless"
+		}
+		if (makeup.typeGov == "constitutional federal republic")
+		{
+		return "ten colorless"
+		}
+		if (makeup.typeGov == "semi-presidential republic")
+		{
+		return "eleven colorless"
+		}
+	})
 	.text(function(makeup)
 		  
 	{
-		console.log("japan",makeup)
 		return makeup.typeGov
 	})
+	d3.selectAll(".one")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".one")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".one")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".one")
+		.classed("colorless",true)
+	})
 	
+	d3.selectAll(".two")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".two")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".two")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".two")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".three")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".three")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".three")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".three")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".four")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".four")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".four")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".four")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".five")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".five")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".five")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".five")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".six")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".six")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".six")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".six")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".seven")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".seven")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".seven")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".seven")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".eight")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".eight")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".eight")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".eight")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".nine")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".nine")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".nine")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".nine")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".ten")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".ten")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".ten")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".ten")
+		.classed("colorless",true)
+	})
+	
+	d3.selectAll(".eleven")
+	.on("mouseover",function()
+	{
+		d3.selectAll(".eleven")
+		.classed("colorless",false)
+	})
+	d3.selectAll(".eleven")
+	.on("mouseleave",function()
+	{
+		d3.selectAll(".eleven")
+		.classed("colorless",true)
+	})
 }
 	
 	
