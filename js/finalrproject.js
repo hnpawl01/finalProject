@@ -92,7 +92,7 @@ var eduPromise = d3.csv("../education.csv");
 			.text(makeup.gdp)
 			
 			d3.select(this)
-			.attr("fill", "purple")	
+			.attr("fill", "fuchsia")	
 		})
 		.on("mouseleave", function(makeup)
 		{
@@ -140,7 +140,7 @@ var eduPromise = d3.csv("../education.csv");
 			.text(makeup.math)
 			
 			d3.select(this)
-			.attr("fill", "orange")	
+			.attr("fill", "cyan")	
 		})
 		.on("mouseleave", function(makeup)
 		{
@@ -164,6 +164,7 @@ var drawTable = function(education)
 	.data(education)
 	.enter()
 	.append("tr")
+	
 	rows.append("td")
 	.text(function(makeup)
 	{
@@ -172,11 +173,19 @@ var drawTable = function(education)
 	})
 	
 	rows.append("td")
+	.attr("id",function(makeup){
+		  
+		 if (makeup.typeGov == "parliamentary constitutional monarchy")
+		{
+			return "one"
+		}})
 	.text(function(makeup)
+		  
 	{
-		console.log("insidetype")
+		console.log("japan",makeup)
 		return makeup.typeGov
 	})
+	
 }
 	
 	
