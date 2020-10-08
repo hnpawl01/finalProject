@@ -464,7 +464,7 @@ var drawTable = function(education)
 	   
 	   labels.append("text")
 		.classed("title", true)
-		.text("Percent of GDP Per Pupil vs Ranking")
+		.text("Percent of GDP Per Capita Per Pupil vs Ranking")
         .attr("text-anchor","middle")
 		.attr("x", margins.left + graph.width/2)
 		.attr("y", margins.top + (10))

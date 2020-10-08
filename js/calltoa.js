@@ -32,11 +32,11 @@ var callPromises = d3.csv("../calltoas.csv");
 			d3.select("#scatter")
 			.text(makeup.country)
 			d3.select("#money")
-			.text(makeup.monPercap)
+			.text("Percent of GDP Per Capita Per Pupil: "+makeup.monPercap)
 			d3.select("#mathscores")
-			.text(makeup.math)
+			.text("Math Test Scores: "+makeup.math)
 			d3.select("#out")
-			.text(makeup.totalout)
+			.text("Total Amount Unerolled: " +makeup.totalout)
 		})}
 var drawAxis = function(graph,margins,xScale,yScale)
 	{
@@ -60,14 +60,14 @@ var drawLabels = function(graph,margins)
 	   
 	   labels.append("text")
 		.classed("title", true)
-		.text("Math Scores vs Money")
+		.text("Math Scores vs Percent of GDP Per Capita Per Pupil")
         .attr("text-anchor","middle")
 		.attr("x", margins.left + graph.width/2)
 		.attr("y", margins.top + (10))
 	
 	labels.append("text")
 		.classed("label", true)
-		.text("Money per Capita")
+		.text("Percent of GDP Per Capita Per Pupil")
         .attr("text-anchor","middle")
 		.attr("x", margins.left + graph.width/2)
 		.attr("y", margins.top + (graph.height) +(30
