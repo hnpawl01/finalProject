@@ -89,7 +89,7 @@ var eduPromise = d3.csv("../education.csv");
 			.text(makeup.percPerP)
 			
 			d3.select("#gdpper")
-			.text(makeup.gdp)
+			.text(makeup.totalcap)
 			
 			d3.select(this)
 			.attr("fill", "fuchsia")	
@@ -478,7 +478,7 @@ var drawTable = function(education)
 	
 	labels.append("text")
 		.classed("label", true)
-		.text("Percent of GDP Per Pupil")
+		.text("Percent of GDP Per Capita Per Pupil")
         .attr("text-anchor","middle")
 		.attr( "transform" , "rotate(90) translate (" +(graph.height/2)  + ",-3)")
 	}

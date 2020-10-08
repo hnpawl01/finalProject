@@ -1,22 +1,22 @@
 ranking,country,gdp,percOnEdu,typeGov,stRate,percPerP,math,totalcap
-1,1 Japan,"$4,850,000,000,000.00 ",3.59,parliamentary constitutional monarchy,16.45,22.55,527,10300
-2,2 United Kingdom,"$3,060,000,000,000.00 ",5.66,parliamentary constitutional monarchy,16.55,23.58,502,10300
-3,3 South Korea,"$1,484,000,000,000.00 ",4.59,presidential republic,20.53,16.84,526,12200
+1,1 Japan,"$4,850,000,000,000.00 ",3.59,parliamentary constitutional monarchy,16.45,22.55,527,"$10,300"
+2,2 United Kingdom,"$3,060,000,000,000.00 ",5.66,parliamentary constitutional monarchy,16.55,23.58,502,"$10,300"
+3,3 South Korea,"$1,484,000,000,000.00 ",4.59,presidential republic,20.53,16.84,526,"$12,200"
 4,4 Singapore,"$315,000,000,000.00 ",,parliamentary republic,11.62,14.99,569,
 5,5 Russian Federation,"$2,060,000,000,000.00 ",4.01,semi-presidential federation,19.81,,488,
-6,6 Finland,"$274,000,000,000.00 ",7.52,parliamentary republic,13.33,21.14,507,10200
-7,7 Canada,"$1,800,000,000,000.00 ",,federal parliamentary democracy under a constitutional monarchy,,,512,11100
-8,8 Netherlands,"$891,000,000,000.00 ",5.46,parliamentary constitutional monarchy,11.62,16.85,519,11500
+6,6 Finland,"$274,000,000,000.00 ",7.52,parliamentary republic,13.33,21.14,507,"$10,200"
+7,7 Canada,"$1,800,000,000,000.00 ",,federal parliamentary democracy under a constitutional monarchy,,,512,"$11,100"
+8,8 Netherlands,"$891,000,000,000.00 ",5.46,parliamentary constitutional monarchy,11.62,16.85,519,"$11,500"
 9,9 Ireland,"$258,000,000,000.00 ",4.88,parliamentary republic,23.29,15.34,500,9100
-10,10 Israel,"$310,000,000,000.00 ",5.78,parliamentary democracy,12.11,20.7,463,8500
+10,10 Israel,"$310,000,000,000.00 ",5.78,parliamentary democracy,12.11,20.7,463,"$8,500"
 11,11 China,"$10,500,000,000,000.00 ",,communist party-led state,16.23,,,
-12,12 New Zealand,"$201,000,000,000.00 ",6.35,parliamentary democracy under a constitutional monarchy,14.37,18.18,494,9800
-13,13 Norway,"$498,000,000,000.00 ",7.68,parliamentary constitutional monarchy,8.85,19.93,501,14400
-14,14 Belgium,"$535,000,000,000.00 ",6.64,federal parliamentary democracy under a constitutional monarchy,11.24,22.23,508,12800
-15,15 Germany,"$3,880,000,000,000.00 ",4.92,federal parliamentary republic,12.3,17.67,500,11700
+12,12 New Zealand,"$201,000,000,000.00 ",6.35,parliamentary democracy under a constitutional monarchy,14.37,18.18,494,"$9,800"
+13,13 Norway,"$498,000,000,000.00 ",7.68,parliamentary constitutional monarchy,8.85,19.93,501,"$14,400"
+14,14 Belgium,"$535,000,000,000.00 ",6.64,federal parliamentary democracy under a constitutional monarchy,11.24,22.23,508,"$12,800"
+15,15 Germany,"$3,880,000,000,000.00 ",4.92,federal parliamentary republic,12.3,17.67,500,"$11,700"
 16,16 Denmark,"$353,000,000,000.00 ",7.63,parliamentary constitutional monarchy,10.74,25.05,509,
-17,17 Estonia,"$26,800,000,000.00 ",5.4,parliamentary republic,11.5,22.39,523,7400
-18,18 United States,"$17,500,000,000,000.00 ",4.96,constitutional federal republic,14.54,19.79,478,13600
-19,19 France,"$2,850,000,000,000.00 ",,parliamentary democracy,18.17,,495,10500
-20,20 Portugal,"$230,000,000,000.00 ",5.12,semi-presidential republic,13.41,23.83,492,9200
-21,21 Average,$0.00 ,5.64,none,14.56,20.07,506,10788
+17,17 Estonia,"$26,800,000,000.00 ",5.4,parliamentary republic,11.5,22.39,523,"$7,400"
+18,18 United States,"$17,500,000,000,000.00 ",4.96,constitutional federal republic,14.54,19.79,478,"$13,600"
+19,19 France,"$2,850,000,000,000.00 ",,parliamentary democracy,18.17,,495,"$10,500"
+20,20 Portugal,"$230,000,000,000.00 ",5.12,semi-presidential republic,13.41,23.83,492,"$9,200"
+21,21 Average,$0.00 ,5.64,none,14.56,20.07,506,"$10,788"
